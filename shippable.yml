@@ -7,7 +7,7 @@ python:
   - 3.3
   - 3.4
   - pypy
-  
+
 install:
   - pip install -r requirements.txt
 
@@ -17,9 +17,9 @@ before_script:
   - mkdir -p shippable/codecoverage
 
 script:
-  - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
-  - which python && coverage run --branch test.py
-  - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
+  - which python
+  - coverage run `which nosetests` test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
+  - coverage xml -o shippable/codecoverage/coverage.xml
 
 notifications:
   email:
